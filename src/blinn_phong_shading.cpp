@@ -11,7 +11,9 @@ Eigen::Vector3d blinn_phong_shading(
     const std::vector<std::shared_ptr<Object>> &objects,
     const std::vector<std::shared_ptr<Light>> &lights)
 {
-  double epsilon = std::pow(1.0, -9);
+  double epsilon = std::pow(10, -9);
+  std::cout << "epsilon: " << epsilon << std::endl;
+
   Eigen::Vector3d point = ray.origin + t * ray.direction + epsilon * n;
   Eigen::Vector3d ks = objects[hit_id].get()->material.get()->ks;
   Eigen::Vector3d kd = objects[hit_id].get()->material.get()->kd;
@@ -33,10 +35,15 @@ Eigen::Vector3d blinn_phong_shading(
     double t_temp;
     Eigen::Vector3d n_temp;
 
-    if (first_hit(shadow_ray, 0, objects, hit, t_temp, n_temp))
+    if (first_hit(shadow_ray, epsilon, objects, hit, t_temp, n_temp))
     {
+      std::cout << "t_max: " << t_max << std::endl;
+      std::cout << "t_temp: " << t_temp << std::endl;
       if (t_max > t_temp)
       {
+
+        //""
+        std::cout << "should be black at here" << std::endl;
         continue;
       }
     }

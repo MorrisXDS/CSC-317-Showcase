@@ -14,7 +14,7 @@ bool raycolor(
   int hit_id;
   double t;
   Eigen::Vector3d n;
-  double epsilon = std::pow(1.0, -9);
+  double epsilon = std::pow(10, -9);
 
   if (first_hit(ray, min_t, objects, hit_id, t, n))
   {
