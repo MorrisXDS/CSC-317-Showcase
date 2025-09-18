@@ -3,7 +3,7 @@
 Eigen::Vector3d reflect(const Eigen::Vector3d &in, const Eigen::Vector3d &n)
 {
   ////////////////////////////////////////////////////////////////////////////
-  auto n_normalized = n.normalized();
-  return in - 2 * (in.dot(n_normalized)) * n_normalized;
+  const Eigen::Vector3d n_normalized = n.normalized();
+  return in - 2.0 * (in.dot(n_normalized)) * n_normalized;
   ////////////////////////////////////////////////////////////////////////////
 }
