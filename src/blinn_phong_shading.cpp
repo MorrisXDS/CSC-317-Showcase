@@ -11,8 +11,8 @@ Eigen::Vector3d blinn_phong_shading(
     const std::vector<std::shared_ptr<Object>> &objects,
     const std::vector<std::shared_ptr<Light>> &lights)
 {
-  Eigen::Vector3d point = ray.origin + t * ray.direction;
   double epsilon = std::pow(1.0, -9);
+  Eigen::Vector3d point = ray.origin + t * ray.direction + epsilon * n;
   Eigen::Vector3d ks = objects[hit_id].get()->material.get()->ks;
   Eigen::Vector3d kd = objects[hit_id].get()->material.get()->kd;
   Eigen::Vector3d ka = objects[hit_id].get()->material.get()->ka;
@@ -33,7 +33,7 @@ Eigen::Vector3d blinn_phong_shading(
     double t_temp;
     Eigen::Vector3d n_temp;
 
-    if (first_hit(shadow_ray, epsilon, objects, hit, t_temp, n_temp))
+    if (first_hit(shadow_ray, 0, objects, hit, t_temp, n_temp))
     {
       if (t_max > t_temp)
       {
@@ -45,8 +45,8 @@ Eigen::Vector3d blinn_phong_shading(
     Eigen::Vector3d l = shadow_ray.direction.normalized();
     Eigen::Vector3d h = (l + v).normalized();
 
-    color += light->I * ks * std::pow(std::max(0.0, n.dot(h)), phong_exp);
-    color += light->I * kd * std::max(0.0, n.dot(l));
+    color += light->I.cwiseProduct(ks) * std::pow(std::max(0.0, n.dot(h)), phong_exp);
+    color += light->I.cwiseProduct(kd) * std::max(0.0, n.dot(l));
   }
 
   color += ka * ambient_factor;
