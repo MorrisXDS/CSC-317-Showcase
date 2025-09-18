@@ -28,13 +28,13 @@ Eigen::Vector3d blinn_phong_shading(
     Eigen::Vector3d direction;
     double t_max;
     light->direction(point, direction, t_max);
-    Ray shadow_ray({point, direction});
+    Ray shadow_ray({point + epsilon * n, direction});
 
     int hit;
     double t_temp;
     Eigen::Vector3d n_temp;
 
-    if (first_hit(shadow_ray, epsilon, objects, hit, t_temp, n_temp))
+    if (first_hit(shadow_ray, 0, objects, hit, t_temp, n_temp))
     {
       if (t_max > t_temp)
       {
