@@ -37,6 +37,13 @@ set(HW2FILES
 )
 list(REMOVE_ITEM SRCFILES ${HW2FILES})
 
+# 
+set_source_files_properties(
+    "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp"
+    PROPERTIES
+    COMPILE_FLAGS "-w" 
+)
+
 # Add the main program entry
 list(APPEND SRCFILES "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 
