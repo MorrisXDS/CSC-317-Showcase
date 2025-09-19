@@ -1,7 +1,6 @@
 #include "blinn_phong_shading.h"
 // Hint:
 #include "first_hit.h"
-#include <iostream>
 
 Eigen::Vector3d blinn_phong_shading(
     const Ray &ray,
