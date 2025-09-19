@@ -42,3 +42,4 @@ solution/
 *.py
 
 build-release/
+build-test/
