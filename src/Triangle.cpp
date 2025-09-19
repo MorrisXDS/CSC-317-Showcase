@@ -34,7 +34,7 @@ bool Triangle::intersect(
 
   Eigen::Vector3d normal_vector = edge_1.cross(edge_2);
 
-  n = (normal_vector) / (normal_vector.norm());
+  n = normal_vector.normalized(); //(normal_vector) / (normal_vector.norm());
 
   return true;
 }
