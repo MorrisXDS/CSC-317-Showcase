@@ -40,3 +40,5 @@ solution/
 .vscode/
 
 *.py
+
+build-release/
