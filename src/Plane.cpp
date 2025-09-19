@@ -6,7 +6,7 @@ bool Plane::intersect(
 {
   double denominator = this->normal.dot(ray.direction);
 
-  // if denominator is 0, the camera is looking parellel to the plane.
+  // if denominator is 0, the camera is looking parallel to the plane.
   // there is no way the ray intersects with the plane
   if (denominator == 0.0)
     return false;
