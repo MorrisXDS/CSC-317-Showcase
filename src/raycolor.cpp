@@ -2,6 +2,7 @@
 #include "first_hit.h"
 #include "blinn_phong_shading.h"
 #include "reflect.h"
+#include <iostream>
 
 bool raycolor(
     const Ray &ray,
@@ -24,7 +25,11 @@ bool raycolor(
 
     Eigen::Vector3d origin = ray.origin + t * ray.direction + epsilon * n;
     Ray mirrored_ray({origin, reflect(ray.direction, n)});
-    raycolor(ray, min_t, objects, lights, num_recursive_calls - 1, rgb);
+    Eigen::Vector3d rgb_reflected({0, 0, 0});
+
+    raycolor(mirrored_ray, 0, objects, lights, num_recursive_calls - 1, rgb_reflected);
+    rgb += objects[hit_id].get()->material.get()->km.cwiseProduct(rgb_reflected);
+    return true;
   }
 
   return false;
