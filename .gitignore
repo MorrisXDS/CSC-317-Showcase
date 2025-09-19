@@ -44,4 +44,4 @@ solution/
 build-release/
 build-test/
 
-./main.cpp
+main.cpp
