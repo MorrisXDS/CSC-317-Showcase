@@ -45,3 +45,6 @@ build-release/
 build-test/
 
 main.cpp
+.idea/
+*.log
+
