@@ -3,6 +3,8 @@
 #include "blinn_phong_shading.h"
 #include "reflect.h"
 
+#define NUMBER_RECURSIVE_CALLS 15
+
 bool raycolor(
     const Ray &ray,
     const double min_t,
@@ -20,7 +22,7 @@ bool raycolor(
   {
     // add blinn_phong_shading when a hit occurs
     rgb += blinn_phong_shading(ray, hit_id, t, n, objects, lights);
-    if (num_recursive_calls == 0)
+    if (num_recursive_calls == NUMBER_RECURSIVE_CALLS)
       // end of recursive call of reflections
       return true;
 
@@ -31,7 +33,7 @@ bool raycolor(
     Ray mirrored_ray({origin, reflect(ray.direction, n)});
     Eigen::Vector3d rgb_reflected({0, 0, 0});
 
-    raycolor(mirrored_ray, 0, objects, lights, num_recursive_calls - 1, rgb_reflected);
+    raycolor(mirrored_ray, epsilon, objects, lights, num_recursive_calls + 1, rgb_reflected);
     // reflected color is revealed with the mirror coefficient of the object
     // on which reflection happens
     rgb += objects[hit_id].get()->material.get()->km.cwiseProduct(rgb_reflected);
