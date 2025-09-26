@@ -31,9 +31,7 @@ Eigen::Vector3d blinn_phong_shading(
     double t_max;
     // get direction from point to light
     light->direction(point, direction, t_max);
-    // construct a ray from the point to the light, an epsilon
-    // is added for floating point representation error tolerance
-    Ray shadow_ray({point + epsilon * n, direction});
+    Ray shadow_ray({point, direction});
 
     int hit;
     double t_temp;
