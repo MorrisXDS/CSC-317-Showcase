@@ -1,13 +1,15 @@
-#include "blinn_phong_shading.h"
+#include "../include/blinn_phong_shading.h"
 // Hint:
 #include "first_hit.h"
 
+double double_infinity = std::numeric_limits<double>::infinity();
+
 Eigen::Vector3d blinn_phong_shading(
     const Ray &ray,
-    const int &hit_id,
+    std::shared_ptr<Object> hit_object,
     const double &t,
     const Eigen::Vector3d &n,
-    const std::vector<std::shared_ptr<Object>> &objects,
+    const std::shared_ptr<AABBTree> root,
     const std::vector<std::shared_ptr<Light>> &lights)
 {
   // epsilon idea credit: tutorial
@@ -16,13 +18,15 @@ Eigen::Vector3d blinn_phong_shading(
   // added an epsilon amount along the normal vector to avoid
   // floating point representation errors
   Eigen::Vector3d point = ray.origin + t * ray.direction + epsilon * n;
-  Eigen::Vector3d ks = objects[hit_id].get()->material.get()->ks;
-  Eigen::Vector3d kd = objects[hit_id].get()->material.get()->kd;
-  Eigen::Vector3d ka = objects[hit_id].get()->material.get()->ka;
-  double phong_exp = objects[hit_id].get()->material.get()->phong_exponent;
+  Eigen::Vector3d ks = hit_object->material->ks;
+  Eigen::Vector3d kd = hit_object->material->kd;
+  Eigen::Vector3d ka = hit_object->material->ka;
+  double phong_exp = hit_object->material->phong_exponent;
   double ambient_factor = 0.1;
 
   Eigen::Vector3d color({0.0, 0.0, 0.0});
+
+  std::shared_ptr<Object> descendant;
 
   for (auto &&light_ptr : lights)
   {
@@ -37,10 +41,8 @@ Eigen::Vector3d blinn_phong_shading(
     double t_temp;
     Eigen::Vector3d n_temp;
 
-    if (first_hit(shadow_ray, 0, objects, hit, t_temp, n_temp))
+    if ( root->ray_intersect(ray,0, double_infinity, t_temp, descendant))
     {
-      // if the object hit is in our way to reach the light source,
-      // we are blocked by the object
       if (t_max > t_temp)
       {
         continue;

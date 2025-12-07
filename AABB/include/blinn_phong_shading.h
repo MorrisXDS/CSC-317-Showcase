@@ -1,11 +1,11 @@
 #ifndef BLINN_PHONG_SHADING_H
 #define BLINN_PHONG_SHADING_H
-#include "Ray.h"
-#include "Light.h"
-#include "Object.h"
+#include "../../include/Ray.h"
+#include "../../include/Light.h"
 #include <Eigen/Core>
 #include <vector>
 #include <memory>
+#include "AABBTree.h"
 
 
 // Given a ray and its hit in the scene, return the Blinn-Phong shading
@@ -21,11 +21,11 @@
 //   lights  list of lights in the scene
 // Returns shaded color collected by this ray as rgb 3-vector
 Eigen::Vector3d blinn_phong_shading(
-  const Ray & ray,
-  const int & hit_id, 
-  const double & t,
-  const Eigen::Vector3d & n,
-  const std::vector< std::shared_ptr<Object> > & objects,
-  const std::vector<std::shared_ptr<Light> > & lights);
+    const Ray &ray,
+    std::shared_ptr<Object> hit_object,
+    const double &t,
+    const Eigen::Vector3d &n,
+    const std::shared_ptr<AABBTree> root,
+    const std::vector<std::shared_ptr<Light>> &lights);
 
 #endif

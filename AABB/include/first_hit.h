@@ -1,11 +1,12 @@
 #ifndef FIRST_HIT_H
 #define FIRST_HIT_H
 
-#include "Ray.h"
-#include "Object.h"
+#include "../../include/Ray.h"
+#include "../../include/Object.h"
 #include <Eigen/Core>
 #include <vector>
 #include <memory>
+#include "AABBTree.h"
 
 // Find the first (visible) hit given a ray and a collection of scene objects
 //
@@ -23,8 +24,7 @@
 bool first_hit(
   const Ray & ray, 
   const double min_t,
-  const std::vector< std::shared_ptr<Object> > & objects,
-  int & hit_id, 
+  const std::shared_ptr<AABBTree>& root,
   double & t,
   Eigen::Vector3d & n);
 

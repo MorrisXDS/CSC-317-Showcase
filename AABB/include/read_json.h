@@ -25,17 +25,17 @@ inline bool read_json(
 
 // Implementation
 
-#include <json.hpp>
-#include "readSTL.h"
-#include "dirname.h"
-#include "Object.h"
-#include "Sphere.h"
-#include "Plane.h"
-#include "Triangle.h"
-#include "TriangleSoup.h"
-#include "Light.h"
-#include "PointLight.h"
-#include "DirectionalLight.h"
+#include <../../include/json.hpp>
+#include "../../include/readSTL.h"
+#include "../../include/dirname.h"
+#include "../../include/Object.h"
+#include "../../include/Sphere.h"
+#include "../../include/Plane.h"
+#include "../AABB/include/Triangle.h"
+#include "../AABB/include/TriangleSoup.h"
+#include "../../include/Light.h"
+#include "../../include/PointLight.h"
+#include "../../include/DirectionalLight.h"
 #include "Material.h"
 #include <Eigen/Geometry>
 #include <fstream>
@@ -132,16 +132,18 @@ inline bool read_json(
     {
       if(jobj["type"] == "sphere")
       {
-        std::shared_ptr<Sphere> sphere(new Sphere());
-        sphere->center = parse_Vector3d(jobj["center"]);
-        sphere->radius = jobj["radius"].get<double>();
-        objects.push_back(sphere);
+        // std::shared_ptr<Sphere> sphere(new Sphere());
+        // sphere->center = parse_Vector3d(jobj["center"]);
+        // sphere->radius = jobj["radius"].get<double>();
+        // objects.push_back(sphere);
+        std::cerr << "type "<< jobj["type"] << "not supported !" << std::endl;
       }else if(jobj["type"] == "plane")
       {
-        std::shared_ptr<Plane> plane(new Plane());
-        plane->point = parse_Vector3d(jobj["point"]);
-        plane->normal = parse_Vector3d(jobj["normal"]).normalized();
-        objects.push_back(plane);
+        // std::shared_ptr<Plane> plane(new Plane());
+        // plane->point = parse_Vector3d(jobj["point"]);
+        // plane->normal = parse_Vector3d(jobj["normal"]).normalized();
+        std::cerr << "type "<< jobj["type"] << "not supported !" << std::endl;
+        // objects.push_back(plane);
       }else if(jobj["type"] == "triangle")
       {
         std::shared_ptr<Triangle> tri(new Triangle());
