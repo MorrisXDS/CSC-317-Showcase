@@ -88,6 +88,7 @@ inline bool read_json(
     for(const json & jmat : j)
     {
       std::string name = jmat["name"];
+      // std::cout << name << std::endl;
       std::shared_ptr<Material> material(new Material());
       material->ka = parse_Vector3d(jmat["ka"]);
       material->kd = parse_Vector3d(jmat["kd"]);
@@ -128,6 +129,7 @@ inline bool read_json(
     std::vector<std::shared_ptr<Object> > & objects)
   {
     objects.clear();
+    int size = -1;
     for(const json & jobj : j)
     {
       if(jobj["type"] == "sphere")
@@ -170,7 +172,9 @@ inline bool read_json(
               stl_path,
               V,F,N);
         }
-        std::shared_ptr<TriangleSoup> soup(new TriangleSoup());
+        
+        int start_position = objects.size();
+        int end_position = start_position + F.size();
         for(int f = 0;f<F.size();f++)
         {
           std::shared_ptr<Triangle> tri(new Triangle());
@@ -179,14 +183,22 @@ inline bool read_json(
             Eigen::Vector3d( V[F[f][1]][0], V[F[f][1]][1], V[F[f][1]][2]),
             Eigen::Vector3d( V[F[f][2]][0], V[F[f][2]][1], V[F[f][2]][2])
           );
-          soup->triangles.push_back(tri);
+          objects.push_back(tri);
         }
-        objects.push_back(soup);
+
+        if (materials.count(jobj["material"]))
+        {
+          for(int idx = start_position;idx < end_position;idx++)
+          {
+            objects[idx]->material = materials[jobj["material"]];
+          }
+        }
+
       }
       //objects.back()->material = default_material;
       if(jobj.count("material"))
       {
-        if(materials.count(jobj["material"]))
+        if(materials.count(jobj["material"]) && jobj["type"] != "soup")
         {
           objects.back()->material = materials[jobj["material"]];
         }

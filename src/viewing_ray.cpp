@@ -1,4 +1,5 @@
 #include "viewing_ray.h"
+#include <iostream>
 
 #define X 0
 #define Y 1
@@ -45,4 +46,8 @@ void viewing_ray(
     ray.direction = -camera.d * camera.w +
                     u * camera.u +
                     v * camera.v;
+
+    // std::cout << "Pixel (" << i << ", " << j << "): ";
+    // std::cout << "  Origin:    " << ray.origin.transpose();
+    // std::cout << "  Direction: " << ray.direction.transpose() << std::endl;
 }

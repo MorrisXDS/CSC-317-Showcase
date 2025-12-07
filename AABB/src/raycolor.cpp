@@ -2,6 +2,8 @@
 #include "first_hit.h"
 #include "../include/blinn_phong_shading.h"
 #include "reflect.h"
+#include "Triangle.h"
+#include <Eigen/Dense>
 
 #define NUMBER_RECURSIVE_CALLS 15
 
@@ -23,6 +25,12 @@ bool raycolor(
 
   if (found)
   {
+    // for triangle only !
+    auto triangle = std::dynamic_pointer_cast<Triangle>(descendant);
+    Eigen::Vector3d edge_1 = std::get<1>(triangle->corners) - std::get<0>(triangle->corners);
+    Eigen::Vector3d edge_2 = std::get<2>(triangle->corners) - std::get<0>(triangle->corners);
+    n = (edge_1.cross(edge_2)).normalized();
+
     // add blinn_phong_shading when a hit occurs
     rgb += blinn_phong_shading(ray, descendant, t, n, root, lights);
     if (num_recursive_calls == NUMBER_RECURSIVE_CALLS)
