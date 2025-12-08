@@ -45,7 +45,7 @@ solution/
 build-release/
 build-debug/
 
-main.cpp
+Code/main.cpp
 .idea/
 *.log
 
