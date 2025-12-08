@@ -41,8 +41,9 @@ solution/
 
 *.py
 
+
 build-release/
-build-test/
+build-debug/
 
 main.cpp
 .idea/

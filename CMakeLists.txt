@@ -5,8 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
 set(OPTIMIZATION_FLAGS "-O3 -march=native -mtune=native -flto")
 set(PARALLEL_FLAGS "-fopenmp")
 set(WARNING_FLAGS -Wall -Wextra -Wpedantic -Wconversion)
@@ -19,8 +17,8 @@ set(SRC_DIR "${ROOT}/src")
 
 file(GLOB SRCFILES CONFIGURE_DEPENDS "${SRC_DIR}/*.cpp")
 
-set(HW2FILES "${SRC_DIR}/*.cpp")
-list(REMOVE_ITEM SRCFILES ${HW2FILES})
+set(CORE "${SRC_DIR}/*.cpp")
+list(REMOVE_ITEM SRCFILES ${CORE})
 
 set_source_files_properties(
         "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp"
@@ -52,22 +50,22 @@ if(EXISTS "${ROOT}/json")
     target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE "${ROOT}/json")
 endif()
 
-message(STATUS "Building hw2 library from source")
+message(STATUS "Building core library from source")
 
-file(GLOB HW2_SRCFILES CONFIGURE_DEPENDS "${SRC_DIR}/*.cpp")
-add_library(hw2 STATIC ${HW2_SRCFILES})
+file(GLOB CORE_SRCFILES CONFIGURE_DEPENDS "${SRC_DIR}/*.cpp")
+add_library(core STATIC ${CORE_SRCFILES})
 
-target_include_directories(hw2
+target_include_directories(core
         PRIVATE
         "${ROOT}/include"
 )
 
 if(EXISTS "${ROOT}/eigen")
-    target_include_directories(hw2 SYSTEM PRIVATE "${ROOT}/eigen")
+    target_include_directories(core SYSTEM PRIVATE "${ROOT}/eigen")
 endif()
 
 if(EXISTS "${ROOT}/json")
-    target_include_directories(hw2 SYSTEM PRIVATE "${ROOT}/json")
+    target_include_directories(core SYSTEM PRIVATE "${ROOT}/json")
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE hw2)
+target_link_libraries(${PROJECT_NAME} PRIVATE core)

@@ -1,0 +1,78 @@
+{
+  "camera": {
+    "type": "perspective",
+    "focal_length": 1,
+    "eye": [0, -70, 320],
+    "up": [0, 1, 0],
+    "look": [0, 0, -1],
+    "height": 1,
+    "width": 1.7777777778
+  },
+  "lights": [
+    {
+      "type": "directional",
+      "color": [0.28, 0.8, 1.0],
+      "direction": [0,0,-1]
+    },
+    {
+      "type": "point",
+      "color": [1.0, 1.0, 1.0],
+      "position": [100, 120, 180]
+    },
+    {
+      "type": "point",
+      "color": [1.0, 1.0, 1.0],
+      "position": [0, 150, 150]
+    },
+    {
+      "type": "point",
+      "color": [0.8, 0.8, 0.8],
+      "position": [0, 50, 230]
+    }
+  ],
+  "materials": [
+    {
+      "name": "reflective floor",
+      "ka": [0.1, 0.1, 0.1],
+      "kd": [0.2, 0.2, 0.2],
+      "ks": [0.9, 0.9, 0.9],
+      "km": [0.8, 0.8, 0.8],
+      "phong_exponent": 1000
+    },
+    {
+      "name": "dragon only",
+      "ka": [0.85, 0.85, 0.88],
+      "kd": [0.92, 0.92, 0.95],
+      "ks": [0.8, 0.8, 0.8],
+      "km": [0.3, 0.3, 0.35],
+      "phong_exponent": 1000
+    },
+    {
+      "name": "mirror sphere",
+      "ka": [0.05, 0.05, 0.05],
+      "kd": [0.1, 0.1, 0.1],
+      "ks": [0.95, 0.95, 0.95],
+      "km": [0.9, 0.9, 0.9],
+      "phong_exponent": 1500
+    }
+  ],
+  "objects": [
+    {
+      "type": "soup",
+      "material": "dragon only",
+      "stl": "wind-dragon.stl"
+    },
+    {
+      "type": "sphere",
+      "material": "mirror sphere",
+      "center": [0, -168.2, 60],
+      "radius": 50
+    },
+    {
+      "type": "plane",
+      "material": "reflective floor",
+      "point": [0, -218.2, 0],
+      "normal": [0, 1, 0]
+    }
+  ]
+}
