@@ -14,21 +14,11 @@ class TriangleSoup : public Object
     // A soup is just a set (list) of triangles
     std::vector<std::shared_ptr<Object> > triangles;
 
-    virtual bool point_squared_distance(
-    const Eigen::RowVector3d & query,
-    const double min_sqrd,
-    const double max_sqrd,
-    double & sqrd,
-    std::shared_ptr<Object> & descendant) const override
-        {
-            assert(false && "you should never call point_squared_distance on TriangleSoup!\n");
-            return false;
-        };
-
     bool ray_intersect(
     const Ray& ray,
     const double min_t,
     const double max_t,
+    Eigen::Vector3d & normal,
     double & t,
     std::shared_ptr<Object> & descendant) const override
     {

@@ -24,18 +24,16 @@ inline bool read_json(
   std::vector<std::shared_ptr<Light> > & lights);
 
 // Implementation
-
-#include <../../include/json.hpp>
-#include "../../include/readSTL.h"
-#include "../../include/dirname.h"
-#include "../../include/Object.h"
-#include "../../include/Sphere.h"
-#include "../../include/Plane.h"
-#include "../AABB/include/Triangle.h"
-#include "../AABB/include/TriangleSoup.h"
-#include "../../include/Light.h"
-#include "../../include/PointLight.h"
-#include "../../include/DirectionalLight.h"
+#include <json.hpp>
+#include "readSTL.h"
+#include "dirname.h"
+#include "Object.h"
+#include "Sphere.h"
+#include "Plane.h"
+#include "Triangle.h"
+#include "Light.h"
+#include "PointLight.h"
+#include "DirectionalLight.h"
 #include "Material.h"
 #include <Eigen/Geometry>
 #include <fstream>
@@ -56,7 +54,6 @@ inline bool read_json(
   if( !infile ) return false;
   json j;
   infile >> j;
-
 
   // parse a vector
   auto parse_Vector3d = [](const json & j) -> Eigen::Vector3d
@@ -134,26 +131,20 @@ inline bool read_json(
     {
       if(jobj["type"] == "sphere")
       {
-        // std::shared_ptr<Sphere> sphere(new Sphere());
-        // sphere->center = parse_Vector3d(jobj["center"]);
-        // sphere->radius = jobj["radius"].get<double>();
-        // objects.push_back(sphere);
-        std::cerr << "type "<< jobj["type"] << "not supported !" << std::endl;
+        objects.emplace_back(
+          std::make_shared<Sphere>(parse_Vector3d(jobj["center"]),
+            jobj["radius"].get<double>()));
+        // std::cerr << "type "<< jobj["type"] << "not supported !" << std::endl;
       }else if(jobj["type"] == "plane")
       {
-        // std::shared_ptr<Plane> plane(new Plane());
-        // plane->point = parse_Vector3d(jobj["point"]);
-        // plane->normal = parse_Vector3d(jobj["normal"]).normalized();
-        std::cerr << "type "<< jobj["type"] << "not supported !" << std::endl;
-        // objects.push_back(plane);
+        objects.emplace_back(
+          std::make_shared<Plane>(parse_Vector3d(jobj["point"]),
+            parse_Vector3d(jobj["normal"]).normalized()));
+        // std::cerr << "type "<< jobj["type"] << "not supported !" << std::endl;
       }else if(jobj["type"] == "triangle")
       {
-        std::shared_ptr<Triangle> tri(new Triangle());
-        tri->corners = std::make_tuple(
-          parse_Vector3d(jobj["corners"][0]),
-          parse_Vector3d(jobj["corners"][1]),
-          parse_Vector3d(jobj["corners"][2]));
-        objects.push_back(tri);
+          objects.emplace_back(std::make_shared<Triangle>
+          (parse_Vector3d(jobj["corners"][0]), parse_Vector3d(jobj["corners"][1]), parse_Vector3d(jobj["corners"][2])));
       }else if(jobj["type"] == "soup")
       {
         std::vector<std::vector<double> > V;
@@ -177,13 +168,13 @@ inline bool read_json(
         int end_position = start_position + F.size();
         for(int f = 0;f<F.size();f++)
         {
-          std::shared_ptr<Triangle> tri(new Triangle());
-          tri->corners = std::make_tuple(
+          objects.emplace_back(std::make_shared<Triangle>
+              (
             Eigen::Vector3d( V[F[f][0]][0], V[F[f][0]][1], V[F[f][0]][2]),
             Eigen::Vector3d( V[F[f][1]][0], V[F[f][1]][1], V[F[f][1]][2]),
             Eigen::Vector3d( V[F[f][2]][0], V[F[f][2]][1], V[F[f][2]][2])
-          );
-          objects.push_back(tri);
+              )
+            );
         }
 
         if (materials.count(jobj["material"]))

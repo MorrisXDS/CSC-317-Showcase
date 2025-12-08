@@ -1,8 +1,8 @@
 #ifndef RAYCOLOR_H
 #define RAYCOLOR_H
-#include "../../include/Ray.h"
-#include "../../include/Object.h"
-#include "../../include/Light.h"
+#include "Ray.h"
+#include "Object.h"
+#include "Light.h"
 #include <Eigen/Core>
 #include <vector>
 #include "AABBTree.h"

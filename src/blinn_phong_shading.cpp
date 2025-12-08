@@ -1,6 +1,5 @@
 #include "../include/blinn_phong_shading.h"
 // Hint:
-#include "first_hit.h"
 
 double double_infinity = std::numeric_limits<double>::infinity();
 
@@ -37,11 +36,10 @@ Eigen::Vector3d blinn_phong_shading(
     light->direction(point, direction, t_max);
     Ray shadow_ray({point + epsilon * n, direction});
 
-    int hit;
     double t_temp;
     Eigen::Vector3d n_temp;
 
-    if ( root->ray_intersect(shadow_ray,0, double_infinity, t_temp, descendant) && descendant->ray_intersect(ray,0,double_infinity,t_temp,descendant))
+    if (root->ray_intersect(shadow_ray,0, double_infinity, n_temp, t_temp, descendant))
     {
       if (t_max > t_temp)
       {

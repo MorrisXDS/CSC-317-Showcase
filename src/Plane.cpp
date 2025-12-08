@@ -1,25 +1,23 @@
 // #include "../include/Plane.h"
 // #include "Ray.h"
 //
-// bool Plane::ray_intersect(
-//     const Ray &ray, const double min_t, double &t, Eigen::Vector3d &n) const
-// {
-//   double denominator = this->normal.dot(ray.direction);
+// // Intersect this Object with a ray
+// //
+// // Inputs:
+// //   ray  ray being shot
+// //   min_t  minimum parametric distance along ray to consider
+// //   max_t  maximum parametric distance along ray to consider
+// // Object:
+// //   t  parameteric distance of hit along ray
+// //   descendant  if the hit was found at a descendant, pass along a pointer to
+// //     that descendant (only necessary for hierarchical Objects)
+// // Returns true iff a valid hit was recorded
+//  bool Plane::ray_intersect(
+//   const Ray& ray,
+//   const double min_t,
+//   [[maybe_unused]]const double max_t,
+//   double & t,
+//   [[maybe_unused]]std::shared_ptr<Object> & descendant) const
+//  {
 //
-//   // if denominator is 0, the camera is looking parallel to the plane.
-//   // there is no way the ray intersects with the plane
-//   if (denominator == 0.0)
-//     return false;
-//
-//   Eigen::Vector3d point_to_origin = ray.origin - this->point;
-//   double numerator = -this->normal.dot(point_to_origin);
-//
-//   double t_temp = numerator / denominator;
-//   if (t_temp < min_t)
-//     return false;
-//
-//   t = t_temp;
-//   n = this->normal / (this->normal.norm());
-//
-//   return true;
-// }
+//  };

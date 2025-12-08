@@ -1,7 +1,7 @@
 #ifndef BLINN_PHONG_SHADING_H
 #define BLINN_PHONG_SHADING_H
-#include "../../include/Ray.h"
-#include "../../include/Light.h"
+#include "Ray.h"
+#include "Light.h"
 #include <Eigen/Core>
 #include <vector>
 #include <memory>
