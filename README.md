@@ -35,5 +35,5 @@ Install Version Control tool
 
 Now change directory to where you want the project to be and run
 ```bash
-    git clone --recurse-submodules 
+    git clone --recurse-submodules https://github.com/MorrisXDS/CSC-317-Showcase.git
 ```
