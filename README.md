@@ -80,12 +80,13 @@
 
 ## Description:
 ##### 1. A customized json file to display the output of assignment 3 on the wind-dragon.stl
-##### 2. The current code runs siginificantly faster than the base assignment 3 we started with Time taken to produce a complex ppm from a complext stl has been reduced from several hours to days has been reduced to several minutes to hours.
-##### 3. It combines the blinn-phong model and relections from assignment 3. Meanwhile it uses AABB tree to find ray hits. This improves ray hit lookup from O(n) to O(log (n))
-##### 4. The read_json is modiified to load soups as triangles.
+##### 2. The current code runs significantly faster than the base assignment 3 we started with Time taken to produce a complex ppm from a complext stl has been reduced from several hours to days has been reduced to several minutes to hours.
+##### 3. It combines the blinn-phong model and reflection from assignment 3. In the meantime, it uses AABB tree to find ray hits. This improves ray hit lookup from O(n) to O(log (n))
+##### 4. The read_json is modified to load soups as triangles.
 ##### 5. Triangles, planes and spheres are also changed to adapt the interface from Object in Assignment 4
 ##### 6. An external complex stl has been used to test the program. It is wind-dragon.stl
 ##### 7. used imagemagick to render final ppm file to a png file
+####  8. used openmp parallelization in compiler flags to speed up rendering in main.cpp
 
 ## Acknowledgements: 
 ##### 1. [CF Wind Dragon](https://www.thingiverse.com/thing:7196967)
