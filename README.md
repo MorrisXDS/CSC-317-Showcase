@@ -85,7 +85,7 @@ For build-debug
     6. An external complex stl has been used to test the program. It is wind-dragon.stl
 
 ## Acknowledgements: 
-    1. [placeholder](https://www.thingiverse.com/thing:7196967)
+    1. https://www.thingiverse.com/thing:7196967
     2. Assignment 3
     3. Assignment 4
     4. Eigen library submodule
