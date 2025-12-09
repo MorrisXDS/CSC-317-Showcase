@@ -91,4 +91,118 @@
 ##### 5. nlohmann json used in Assignment 3
 ##### 6. imagemagick 
 
-
+## Compilation Verification:
+If you run in project root
+```bash 
+    rm -rf build-release && mkdir build-release && cd build-release && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j$(nproc) && cd ..
+    rm -rf build-debug && mkdir build-debug && cd build-debug && cmake -DCMAKE_BUILD_TYPE=Debug .. && make -j$(nproc) && cd ..
+```
+you will get the following output
+```bash
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- raytracing includes /home/morris/CSC-317-Showcase/eigen
+-- Building core library from source
+-- core includes /home/morris/CSC-317-Showcase/eigen
+-- Configuring done (1.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/morris/CSC-317-Showcase/build-release
+[  8%] Building CXX object CMakeFiles/core.dir/Code/src/AABBTree_ray_intersect.cpp.o
+[  8%] Building CXX object CMakeFiles/core.dir/Code/src/DirectionalLight.cpp.o
+[  8%] Building CXX object CMakeFiles/core.dir/Code/src/AABBTree.cpp.o
+[ 10%] Building CXX object CMakeFiles/core.dir/Code/src/Plane.cpp.o
+[ 13%] Building CXX object CMakeFiles/core.dir/Code/src/PointLight.cpp.o
+[ 16%] Building CXX object CMakeFiles/core.dir/Code/src/blinn_phong_shading.cpp.o
+[ 18%] Building CXX object CMakeFiles/core.dir/Code/src/Triangle.cpp.o
+[ 21%] Building CXX object CMakeFiles/core.dir/Code/src/box_box_intersect.cpp.o
+[ 24%] Building CXX object CMakeFiles/core.dir/Code/src/ray_intersect_box.cpp.o
+[ 29%] Building CXX object CMakeFiles/core.dir/Code/src/insert_box_into_box.cpp.o
+[ 29%] Building CXX object CMakeFiles/core.dir/Code/src/reflect.cpp.o
+[ 32%] Building CXX object CMakeFiles/core.dir/Code/src/insert_triangle_into_box.cpp.o
+[ 35%] Building CXX object CMakeFiles/core.dir/Code/src/triangle_triangle_intersection.cpp.o
+[ 37%] Building CXX object CMakeFiles/core.dir/Code/src/raycolor.cpp.o
+[ 40%] Building CXX object CMakeFiles/core.dir/Code/src/ray_intersect_triangle.cpp.o
+[ 43%] Building CXX object CMakeFiles/core.dir/Code/src/viewing_ray.cpp.o
+[ 45%] Building CXX object CMakeFiles/core.dir/Code/src/write_ppm.cpp.o
+[ 48%] Linking CXX static library libcore.a
+[ 48%] Built target core
+[ 54%] Building CXX object CMakeFiles/raytracing.dir/Code/src/AABBTree_ray_intersect.cpp.o
+[ 56%] Building CXX object CMakeFiles/raytracing.dir/Code/src/AABBTree.cpp.o
+[ 56%] Building CXX object CMakeFiles/raytracing.dir/Code/src/DirectionalLight.cpp.o
+[ 59%] Building CXX object CMakeFiles/raytracing.dir/Code/src/Plane.cpp.o
+[ 62%] Building CXX object CMakeFiles/raytracing.dir/Code/src/insert_box_into_box.cpp.o
+[ 72%] Building CXX object CMakeFiles/raytracing.dir/Code/src/blinn_phong_shading.cpp.o
+[ 72%] Building CXX object CMakeFiles/raytracing.dir/Code/src/PointLight.cpp.o
+[ 72%] Building CXX object CMakeFiles/raytracing.dir/Code/src/box_box_intersect.cpp.o
+[ 72%] Building CXX object CMakeFiles/raytracing.dir/Code/src/insert_triangle_into_box.cpp.o
+[ 75%] Building CXX object CMakeFiles/raytracing.dir/Code/src/ray_intersect_triangle.cpp.o
+[ 78%] Building CXX object CMakeFiles/raytracing.dir/Code/src/ray_intersect_box.cpp.o
+[ 81%] Building CXX object CMakeFiles/raytracing.dir/Code/src/reflect.cpp.o
+[ 83%] Building CXX object CMakeFiles/raytracing.dir/Code/src/Triangle.cpp.o
+[ 86%] Building CXX object CMakeFiles/raytracing.dir/Code/src/triangle_triangle_intersection.cpp.o
+[ 89%] Building CXX object CMakeFiles/raytracing.dir/Code/src/raycolor.cpp.o
+[ 91%] Building CXX object CMakeFiles/raytracing.dir/Code/src/viewing_ray.cpp.o
+[ 94%] Building CXX object CMakeFiles/raytracing.dir/Code/src/write_ppm.cpp.o
+[ 97%] Building CXX object CMakeFiles/raytracing.dir/Code/main.cpp.o
+[100%] Linking CXX executable raytracing
+lto-wrapper: warning: using serial compilation of 3 LTRANS jobs
+lto-wrapper: note: see the ‘-flto’ option documentation for more information
+[100%] Built target raytracing
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- raytracing includes /home/morris/CSC-317-Showcase/eigen
+-- Building core library from source
+-- core includes /home/morris/CSC-317-Showcase/eigen
+-- Configuring done (1.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/morris/CSC-317-Showcase/build-debug
+[  5%] Building CXX object CMakeFiles/core.dir/Code/src/AABBTree_ray_intersect.cpp.o
+[  5%] Building CXX object CMakeFiles/core.dir/Code/src/AABBTree.cpp.o
+[  8%] Building CXX object CMakeFiles/core.dir/Code/src/Plane.cpp.o
+[ 10%] Building CXX object CMakeFiles/core.dir/Code/src/DirectionalLight.cpp.o
+[ 13%] Building CXX object CMakeFiles/core.dir/Code/src/PointLight.cpp.o
+[ 16%] Building CXX object CMakeFiles/core.dir/Code/src/Triangle.cpp.o
+[ 21%] Building CXX object CMakeFiles/core.dir/Code/src/insert_triangle_into_box.cpp.o
+[ 21%] Building CXX object CMakeFiles/core.dir/Code/src/blinn_phong_shading.cpp.o
+[ 24%] Building CXX object CMakeFiles/core.dir/Code/src/box_box_intersect.cpp.o
+[ 29%] Building CXX object CMakeFiles/core.dir/Code/src/ray_intersect_triangle.cpp.o
+[ 29%] Building CXX object CMakeFiles/core.dir/Code/src/ray_intersect_box.cpp.o
+[ 32%] Building CXX object CMakeFiles/core.dir/Code/src/insert_box_into_box.cpp.o
+[ 35%] Building CXX object CMakeFiles/core.dir/Code/src/viewing_ray.cpp.o
+[ 40%] Building CXX object CMakeFiles/core.dir/Code/src/triangle_triangle_intersection.cpp.o
+[ 40%] Building CXX object CMakeFiles/core.dir/Code/src/raycolor.cpp.o
+[ 43%] Building CXX object CMakeFiles/core.dir/Code/src/reflect.cpp.o
+[ 45%] Building CXX object CMakeFiles/core.dir/Code/src/write_ppm.cpp.o
+[ 48%] Linking CXX static library libcore.a
+[ 48%] Built target core
+[ 56%] Building CXX object CMakeFiles/raytracing.dir/Code/src/AABBTree.cpp.o
+[ 56%] Building CXX object CMakeFiles/raytracing.dir/Code/src/Plane.cpp.o
+[ 56%] Building CXX object CMakeFiles/raytracing.dir/Code/src/AABBTree_ray_intersect.cpp.o
+[ 59%] Building CXX object CMakeFiles/raytracing.dir/Code/src/PointLight.cpp.o
+[ 62%] Building CXX object CMakeFiles/raytracing.dir/Code/src/Triangle.cpp.o
+[ 64%] Building CXX object CMakeFiles/raytracing.dir/Code/src/DirectionalLight.cpp.o
+[ 67%] Building CXX object CMakeFiles/raytracing.dir/Code/src/blinn_phong_shading.cpp.o
+[ 70%] Building CXX object CMakeFiles/raytracing.dir/Code/src/box_box_intersect.cpp.o
+[ 72%] Building CXX object CMakeFiles/raytracing.dir/Code/src/ray_intersect_box.cpp.o
+[ 75%] Building CXX object CMakeFiles/raytracing.dir/Code/src/insert_box_into_box.cpp.o
+[ 78%] Building CXX object CMakeFiles/raytracing.dir/Code/src/insert_triangle_into_box.cpp.o
+[ 81%] Building CXX object CMakeFiles/raytracing.dir/Code/src/ray_intersect_triangle.cpp.o
+[ 83%] Building CXX object CMakeFiles/raytracing.dir/Code/src/raycolor.cpp.o
+[ 86%] Building CXX object CMakeFiles/raytracing.dir/Code/src/viewing_ray.cpp.o
+[ 89%] Building CXX object CMakeFiles/raytracing.dir/Code/src/reflect.cpp.o
+[ 91%] Building CXX object CMakeFiles/raytracing.dir/Code/src/triangle_triangle_intersection.cpp.o
+[ 97%] Building CXX object CMakeFiles/raytracing.dir/Code/main.cpp.o
+[ 97%] Building CXX object CMakeFiles/raytracing.dir/Code/src/write_ppm.cpp.o
+[100%] Linking CXX executable raytracing
+lto-wrapper: warning: using serial compilation of 3 LTRANS jobs
+lto-wrapper: note: see the ‘-flto’ option documentation for more information
+[100%] Built target raytracing
+```
