@@ -49,7 +49,7 @@
     cd ..
 ```
 
-##### Or better yet, you may run all the json files under data folder
+##### To run the program on all input
 ```bash
     cd build-release
     chmod +x ../multi-run.sh
@@ -57,14 +57,15 @@
     cd ..
 ```
 
-##### To view the produced ppm files, go to the build directory which you run your program and run <br>
+##### To view produced files in release mode 
 ##### For build-release
 ```bash
     cd build-release
     ls *.ppm
     cd ..
 ```
-##### For build-debug
+##### To view produced files in debug mode
+##### For build-release
 ```bash
     cd build-debug
     ls *.ppm
