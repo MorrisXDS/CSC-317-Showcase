@@ -86,7 +86,7 @@
 ##### 5. Triangles, planes and spheres are also changed to adapt the interface from Object in Assignment 4
 ##### 6. An external complex stl has been used to test the program. It is wind-dragon.stl
 ##### 7. used imagemagick to render final ppm file to a png file
-####  8. used openmp parallelization in compiler flags to speed up rendering in main.cpp
+#####  8. used openmp parallelization in compiler flags to speed up rendering in main.cpp
 
 ## Acknowledgements: 
 ##### 1. [CF Wind Dragon](https://www.thingiverse.com/thing:7196967)
