@@ -83,6 +83,7 @@ For build-debug
     5. Triangles, planes and spheres are also changed to adapt the interface from Object in Assignment 
         4
     6. An external complex stl has been used to test the program. It is wind-dragon.stl
+    7. used imagemagick to render final ppm file to a png file
 
 ## Acknowledgements: 
     1. https://www.thingiverse.com/thing:7196967
@@ -90,5 +91,6 @@ For build-debug
     3. Assignment 4
     4. Eigen library submodule
     5. nlohmann json used in Assignment 3
+    6. imagemagick 
 
 
