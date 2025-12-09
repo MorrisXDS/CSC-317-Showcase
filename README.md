@@ -16,7 +16,7 @@ Acknowledgements: Citations to all assets, libraries, or external materials you 
 #### Assignments: **A3 and A4**  <br>
 ***
 ## Instructions:
-### HEADSUP: The project has been tested only on Ubuntu 24.04 LTS WSL. It is not guaranteed to work on other linux distributions!
+### HEADS-UP: The project has been tested only on Ubuntu 24.04 LTS WSL. It is not guaranteed to work on other linux distributions!
 run the following commands in the terminal
 Install essential tools
 ``` bash
@@ -36,4 +36,18 @@ Install Version Control tool
 Now change directory to where you want the project to be and run
 ```bash
     git clone --recurse-submodules https://github.com/MorrisXDS/CSC-317-Showcase.git
+    cd CSC-317-Showcase
+```
+
+build the project
+```bash
+    rm -rf build-release build-debug
+    
+    mkdir build-release && cd build-release && cmake -DCMAKE_BUILD_TYPE=Release .. && cd ..
+    
+    mkdir build-debug && cd build-debug && cmake -DCMAKE_BUILD_TYPE=Debug .. && cd ..
+    
+    cd build-release && make -j$(nproc) && cd ..
+    
+    cd build-debug && make -j$(nproc) && cd ..
 ```
