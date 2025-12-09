@@ -60,15 +60,13 @@
     cd ..
 ```
 
-##### To view produced files in release mode 
-##### For build-release
+##### To view produced files in release mode
 ```bash
     cd build-release
     ls *.ppm
     cd ..
 ```
 ##### To view produced files in debug mode
-##### For build-release
 ```bash
     cd build-debug
     ls *.ppm
