@@ -57,7 +57,7 @@ Or better yet, you may run all the json files under data folder
     cd ..
 ```
 
-To view the produced ppm files, go to the build directory which you run your program and run
+To view the produced ppm files, go to the build directory which you run your program and run <br>
 For build-release
 ```bash
     cd build-release
