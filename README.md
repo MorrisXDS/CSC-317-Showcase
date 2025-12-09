@@ -41,13 +41,7 @@ Now change directory to where you want the project to be and run
 
 build the project
 ```bash
-    rm -rf build-release build-debug
+    rm -rf build-release && mkdir build-release && cd build-release && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j$(nproc) && cd ..
     
-    mkdir build-release && cd build-release && cmake -DCMAKE_BUILD_TYPE=Release .. && cd ..
-    
-    mkdir build-debug && cd build-debug && cmake -DCMAKE_BUILD_TYPE=Debug .. && cd ..
-    
-    cd build-release && make -j$(nproc) && cd ..
-    
-    cd build-debug && make -j$(nproc) && cd ..
+    rm -rf build-debug && mkdir build-debug && cd build-debug && cmake -DCMAKE_BUILD_TYPE=Debug .. && make -j$(nproc) && cd ..
 ```
